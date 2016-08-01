@@ -24,14 +24,10 @@ def main():
 def is_valid_password(password):
     # TODO: if length is wrong, return False
     print (len(password))
-    if len(password) < 2:
-        print("The password is too short. It must be 2 to 6 characters.")
-    elif
-        len(password) > 6:
-        print("The password is too long. It must be 2 to 6 characters.")
-    Else
-
-    return false
+    if len(password) < 2, > 6:
+        print("The password is too short/long. It must be 2 to 6 characters.")
+    else
+        return false
 
     count_lower = 0
     count_upper = 0
@@ -39,14 +35,17 @@ def is_valid_password(password):
     count_special = 0
     for char in password:
         # TODO: count each kind of character
-        pass
-
+        if char.lower(), char.upper() = 0
+            return False
     # TODO: if any of the 'normal' counts are zero, return False
-
+        elif char.digit() = 0
+            return False
     # TODO: if special characters are required, then check the count of those and return False if it's zero
-
+        elif char.special() = 0
+            return False
+    else
     # if we get here (without having returned False), then the password must be valid
-    return True
+        return True
 
 main()
 print (string.ascii_lowercase)
