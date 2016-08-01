@@ -12,8 +12,8 @@ def getNum ():
     while True:
         if upper > lower:
             break
-            print ("The Upper Value is too low.")
-            upper = int(input("Enter a number between (10-50):"))
+        print ("The Upper Value is too low.")
+        upper = int(input("Enter a number between (10-50):"))
 
     for i in range (lower, upper, 11):
         print ("{}{:>20}".format(i, chr(i)).strip())
