@@ -1,13 +1,13 @@
 import random
 
-lines = int(input("how many quick picks?"))
+num_of_picks = int(input("Enter number of picks:"))
 
-for each in range(lines):
-    lottery_numbers = []
-    x = 0
-    while x < 6:
-        lottery_numbers.append(random.randint(1, 49))
-        x += 1
-    lottery_numbers.sort()
-    random.sample(range(1, 49),6)
-    print(lottery_numbers)
+for i in range (num_of_picks):
+    num_list = []
+    for j in range(0, 6):
+        rand_num = random.randint(1, 46)
+        while rand_num in num_list:
+            rand_num = random.randint (1,46)
+        num_list.append(rand_num)
+    num_list.sort()
+    print(num_list)
