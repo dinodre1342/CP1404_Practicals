@@ -1,0 +1,18 @@
+Mid Term Test
+- 60 mins
+- Format: 12 MCQ (12 Marks) + 5 written (12 marks)
+- Coverage:
+    week 1: Theory (Revise on the understand of how python is run, the different terms associated with running of python)
+
+    week 2: Extremely Important
+    - Must know String, Files, Exception
+    - Different Functions associated with strings, string format, slicing
+    - File, Opening, Reading, Writing, Closing
+    - Exception: how to use it.
+
+    week 3: Focus on Functions
+    - How to create function, naming, inputs, and return
+
+    week 4: Little Questions on this
+
+    week 5: Little Questions on this
