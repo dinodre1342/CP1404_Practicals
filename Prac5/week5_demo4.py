@@ -1,6 +1,5 @@
 plants = {}
 
-print(plants)
 plants ['carrots'] = 'orange' #key=carrot, value=orange
 plants ['radish'] = 'white'
 plants ['beetroot'] = 'red'
