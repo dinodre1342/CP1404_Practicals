@@ -16,3 +16,23 @@ Mid Term Test
     week 4: Little Questions on this
 
     week 5: Little Questions on this
+**************************************************************
+More on functions:
+- docstring:
+    - Define at the next line after def
+    - Use """
+          """
+    - Call by: function_name.__doc__
+- other attributesL
+    - __name__
+    - __str___
+    - __doc__
+    - __dict__
+- Passing of Arguments:
+    - mutable ?
+    - Immutable ?
+- Return multiple values
+    - return x, y
+- Default Values
+    - def area (x=50, y=50)
+    - default values will be used if called did not provide inputs 
