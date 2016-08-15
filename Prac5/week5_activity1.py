@@ -10,11 +10,13 @@ while not input_flag:
     try:
         user_input = input("Enter three words seperated by space: ")
         data1, data2, data3 = user_input.split()
-        print ("data1: {}\ndata2: {}\ndata3: {}".format(data1, data2, data3))
+        print ("data1: {}\nda ta2: {}\ndata3: {}".format(data1, data2, data3))
         input_flag = True
     except ValueError:
         print ("Bad input.")
 
+#data1: {} =
+#\n: New line
 
 
 
