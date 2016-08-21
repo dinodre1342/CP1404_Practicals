@@ -11,12 +11,12 @@ def main():
     menu()
 
 
-
 def list_items ():
     list = open("items.csv", 'r')
     num = 0
     for each in list:
         items = each.strip().split()
+
 
 
 def menu():
@@ -26,6 +26,7 @@ def menu():
     print("M - Mark an item as completed")
     print("Q - Quit")
     user_input = input(">>>")
+    user_input = user_input.upper()
 
     while True:
 
