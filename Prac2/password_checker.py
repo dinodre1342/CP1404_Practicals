@@ -9,7 +9,7 @@ SPECIALS = "!@#$%^&*()_-=+`~,./o'[]\<>?O{}|"
 def main():
     print("Please enter a valid password")
     print("Your password must be between", MIN_LENGTH, "and", MAX_LENGTH, "characters, and contain:")
-    print("\t1 or more uppercase characters")
+    print("\t1 or more uppercase characters") #\t
     print("\t1 or more lowercase characters")
     print("\t1 or more numbers")
     if SPECIAL_CHARS_REQUIRED:
