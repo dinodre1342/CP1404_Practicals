@@ -1,0 +1,25 @@
+GridLayout:
+    rows:3
+    cols:2
+
+    Button:
+        text: "one"
+    Button:
+        text: "two"
+    Button:
+        text: "three"
+    Button:
+        text: "four"
+    Button:
+        text: "five"
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "One"
+        Button:
+            text: "two"
+        Button:
+            text: "three"
+            on_press: app.button_press()
+        label:
+            text: "four"

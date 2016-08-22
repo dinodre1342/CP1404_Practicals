@@ -22,6 +22,7 @@ def list_items ():
 def menu():
     print("Menu:")
     print("R - List required items")
+    print("C - List of Completed items")
     print("A - Add new item")
     print("M - Mark an item as completed")
     print("Q - Quit")
@@ -29,5 +30,12 @@ def menu():
     user_input = user_input.upper()
 
     while True:
+        if user_input == "R":
+            print(list_items)
+        elif user_input == "C":
+            print ("No Completed items.")
+            menu()
+        elif user_input == "A":
+
 
 main()
