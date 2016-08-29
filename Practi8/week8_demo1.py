@@ -27,3 +27,12 @@ class Student(Person):
 
     def __str__(self):
         return "Student class, name={}, age={}, id={}".format(self.name, self.age,self.student_id)
+
+    def __add__(self, other):
+        return str(self.student_id)+","+str(other.student_id)
+
+    def __eq__(self, other):
+        if self.name == other.name:
+            return True
+        else:
+            return False
