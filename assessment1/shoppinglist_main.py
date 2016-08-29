@@ -35,14 +35,54 @@ def listing_current_items():
         price += float(items[2])
     print("Total expected price for {} items: $ {:>6.2f}".format(len(list_items), price))
 
-def mark_completed():
+def mark_complete():
     price = 0
     for items in list_items:
         print("{}. {:<20s} $ {:>6.2f}".format(items[0], items[1], float(items[2])))
         price += float(items[2])
+    while True:
+        enter_items = input("Enter the number of item to mark as completed:")
+        if enter_items != "{}*".format(int(items)):
+            print("Invalid Input!")
+        else:
+            print("{} marked as completed.".format(items[0]))
+            break
+
+def add_an_item ():
+    while True:
+        item_name = input("Item name:")
+        if len(item_name) < 1:
+            print("Input can not be blank.")
+        else:
+            break
+    while True:
+        try:
+            item_price = float(input("Price: "))
+            if item_price != float:
+                print ("Price must be >= $0")
+            else:
+                break
+        except ValueError:
+            print("Invalid input, enter a valid input.")
+    while True:
+        try:
+            set_priority = input("Priority:")
+            if set_priority == 0 and set_priority > 3:
+                print("Priority must 1, 2 or 3")
+            else:
+                break
+        except ValueError:
+            print("Invalid input, enter a valid input.")
+    new_item = [len(list_items + items_added), item_name, item_price, set_priority]
 
 
 
+
+
+
+
+
+items_added = []
 list_items = []
 open_list_items()
 print("Shopping List 1.0 - by Andre Sardino Arno")
@@ -53,6 +93,13 @@ while True:
     if user_input == "R":
         listing_current_items()
     elif user_input == "M":
+        mark_complete()
+    elif user_input == "C":
+        if user_input :
+            print("No Completed items.")
+        elif mark_complete():
+
+
 
 
 
