@@ -17,7 +17,7 @@ class MilesConverterApp(App):
     def build(self):
         """ build the Kivy app from the kv file """
         self.title = "Convert Miles to Kilometres"
-        self.root = Builder.load_file('convert_m_km.kv')
+        self.root = Builder.load_file('convertnumber.kv')
         return self.root
 
     def handle_calculate(self):

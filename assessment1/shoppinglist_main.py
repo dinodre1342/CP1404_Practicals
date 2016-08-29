@@ -5,10 +5,6 @@ The program is to load list of saved items from a csv file. The user then can ch
 mark completed items, or list of completed items. The program ends with saving added new items to the csv file.
 """
 
-def main():
-    print("Shopping List 1.0 - by Andre Sardino Arno")
-    print("3 items loaded from items.csv")
-    menu()
 
 def menu():
     print("Menu:")
@@ -19,22 +15,44 @@ def menu():
     print("Q - Quit")
     user_input = input(">>>")
     user_input = user_input.upper()
+    return user_input
 
-    while True:
-        if user_input == "R":
-            print(list_items)
-        elif user_input == "C":
-            print ("No Completed items.")
-            menu()
-        elif user_input == "A":
 
-def list_items ():
+def open_list_items():
     list = open("items.csv", 'r')
     num = 0
     for each in list:
-        items = each.strip().split()
-        items.append()
+        items = each.strip().split(",")
+        items = [num, items[0], items[1], items[2], items[3]]
+        list_items.append(items)
+        num += 1
+    list.close()
+
+def listing_current_items():
+    price = 0
+    for items in list_items:
+        print("{}. {:<20s} $ {:>6.2f}".format(items[0], items[1], float(items[2])))
+        price += float(items[2])
+    print("Total expected price for {} items: $ {:>6.2f}".format(len(list_items), price))
+
+def mark_completed():
+    price = 0
+    for items in list_items:
+        print("{}. {:<20s} $ {:>6.2f}".format(items[0], items[1], float(items[2])))
+        price += float(items[2])
 
 
 
-main()
+list_items = []
+open_list_items()
+print("Shopping List 1.0 - by Andre Sardino Arno")
+print("{} items loaded from items.csv".format(len(list_items)))
+
+while True:
+    user_input = menu()
+    if user_input == "R":
+        listing_current_items()
+    elif user_input == "M":
+
+
+
