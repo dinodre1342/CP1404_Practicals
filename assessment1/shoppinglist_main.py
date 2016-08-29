@@ -10,15 +10,6 @@ def main():
     print("3 items loaded from items.csv")
     menu()
 
-
-def list_items ():
-    list = open("items.csv", 'r')
-    num = 0
-    for each in list:
-        items = each.strip().split()
-
-
-
 def menu():
     print("Menu:")
     print("R - List required items")
@@ -37,5 +28,13 @@ def menu():
             menu()
         elif user_input == "A":
 
+def list_items ():
+    list = open("items.csv", 'r')
+    num = 0
+    for each in list:
+        items = each.strip().split()
+        items.append()
 
-    main()
+
+
+main()
