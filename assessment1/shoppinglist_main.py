@@ -25,15 +25,26 @@ def open_list_items():
         items = each.strip().split(",")
         items = [num, items[0], items[1], items[2], items[3]]
         list_items.append(items)
+    print("{} items loaded from {}".format(len(list_items), items.name))
         num += 1
     list.close()
 
-def listing_current_items():
-    price = 0
-    for items in list_items:
-        print("{}. {:<20s} $ {:>6.2f}".format(items[0], items[1], float(items[2])))
-        price += float(items[2])
-    print("Total expected price for {} items: $ {:>6.2f}".format(len(list_items), price))
+def list_required():
+    incomplete_item = []
+    total_price = []
+    for item in list_items:
+        if item[3] == "r":
+            incomplete_item.append(item)
+    if len(incomplete_item) == 0:
+        print("No required items")
+    else:
+        new_list = sorted(incomplete_item, key=lambda priority: priority[2])
+        for i, item in enumerate(new_list):
+            print("{}. {:<20s} ${:>6.2f} ({})".format(i, item[0], item[1], item[2]))
+            total_price.append(item[1])
+        print("Total expected price for {} items: ${:.2f}".format(len(new_list), sum(total_price)))
+
+
 
 def mark_complete():
     price = 0
@@ -74,12 +85,8 @@ def add_an_item ():
         except ValueError:
             print("Invalid input, enter a valid input.")
     new_item = [len(list_items + items_added), item_name, item_price, set_priority]
-
-
-
-
-
-
+    items_added.append(new_item)
+    print("{} $({}) (priority{:.2f}) added to shopping list".format(new_item[0], new_item[1], set_priority))
 
 
 items_added = []
