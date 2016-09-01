@@ -24,26 +24,26 @@ def open_list_items(): #To load list of current items from the csv file and form
     num = 0 #Counts start from 0
     for each in list: #To iterate number of line in file
         items = each.strip().split(",") #To split the data in each line of the file
-        items = [num, items[0], items[1], items[2], items[3]] #To format data structure in display
+        items = [items[0], float(items[1]), int(items[2]), items[3]] #To format data structure in display
         list_items.append(items) #To passed the items into the current list from the file
-    print("{} items loaded from {}".format(len(list_items), items.name)) #print the items into list format
+    print("{} items loaded from {}".format(len(list_items), list.name)) #print the items into list format
     num += 1 #Counts every item list by 1
     list.close() #Closing the file
 
 def list_required(): #To Display current list required of items
     incomplete_item = [] #List of curren items in the file
     total_price = [] #List of total price of the items
-    for item in list_items:
-        if item[3] == "r":
-            incomplete_item.append(item)
-    if len(incomplete_item) == 0:
-        print("No required items")
+    for item in list_items: #To format each item on item list
+        if item[3] == "r": #If user input = r
+            incomplete_item.append(item) #Passed the object (item) to the incomplete
+    if len(incomplete_item) == 0: #if the incomplete item list equals to 0
+        print("No required items") #Print no required items
     else:
-        new_list = sorted(incomplete_item, key=lambda priority: priority[2])
-        for i, item in enumerate(new_list):
-            print("{}. {:<20s} ${:>6.2f} ({})".format(i, item[0], item[1], item[2]))
-            total_price.append(item[1])
-        print("Total expected price for {} items: ${:.2f}".format(len(new_list), sum(total_price)))
+        new_list = sorted(incomplete_item, key=lambda priority: priority[2]) #Sort the list in place based on priority of the item
+        for i, item in enumerate(new_list): #To add a counter in an iterable item list
+            print("{}. {:<20s} ${:>6.2f} ({})".format(i, item[0], item[1], item[2])) #print item based on the format structure
+            total_price.append(item[1]) #Passed the object of the total price of the list
+        print("Total expected price for {} items: ${:.2f}".format(len(new_list), sum(total_price))) #print the total expected price of the new list
 
 
 def list_completed():
@@ -108,7 +108,7 @@ def add_an_item ():
     while True:
         try:
             item_price = float(input("Price: "))
-            if item_price != float:
+            if item_price < 0:
                 print ("Price must be >= $0")
             else:
                 break
@@ -136,10 +136,8 @@ def save():
 
 
 list_items = []
-open_list_items()
 print("Shopping List 1.0 - by Andre Sardino Arno")
-print("{} items loaded from items.csv".format(len(list_items)))
-
+open_list_items()
 while True:
     user_input = menu()
     if user_input == "R":
