@@ -21,18 +21,18 @@ def menu(): #To display main menu of the shopping list and ask for user's input
 
 def open_list_items(): #To load list of current items from the csv file and format it preferenced display
     list = open("items.csv", 'r') #Open csv file for reading
-    num = 0
-    for each in list:
-        items = each.strip().split(",")
-        items = [num, items[0], items[1], items[2], items[3]]
-        list_items.append(items)
-    print("{} items loaded from {}".format(len(list_items), items.name))
-    num += 1
-    list.close()
+    num = 0 #Counts start from 0
+    for each in list: #To iterate number of line in file
+        items = each.strip().split(",") #To split the data in each line of the file
+        items = [num, items[0], items[1], items[2], items[3]] #To format data structure in display
+        list_items.append(items) #To passed the items into the current list from the file
+    print("{} items loaded from {}".format(len(list_items), items.name)) #print the items into list format
+    num += 1 #Counts every item list by 1
+    list.close() #Closing the file
 
-def list_required():
-    incomplete_item = []
-    total_price = []
+def list_required(): #To Display current list required of items
+    incomplete_item = [] #List of curren items in the file
+    total_price = [] #List of total price of the items
     for item in list_items:
         if item[3] == "r":
             incomplete_item.append(item)
