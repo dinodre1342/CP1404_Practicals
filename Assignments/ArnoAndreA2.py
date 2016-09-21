@@ -11,6 +11,7 @@ class Shopping_list(App):
         list_completed = []
         list_add_item = []
         mark_as_completed = []
+        incomplete_item = []
         total_price = []
         self.list_item = list_item
         self.list_required = list_required
@@ -18,6 +19,7 @@ class Shopping_list(App):
         self.list_add_item = list_add_item
         self.total_price = total_price
         self.mark_as_completed = mark_as_completed
+        self.incomplete_item = incomplete_item
         item_file_open = open("items.csv", "r")
         for items in item_file_open:
             list_item.append(items)
@@ -54,16 +56,33 @@ class Shopping_list(App):
 
         self.root.ids.list_item.add_widget (temp_button)
 
-    def press_item_to_mark_completed (self, instance):
+    def press_list_completed (self):
+        for items in self.list_completed:
+            if len(self.list_required) == 0:
+                self.status_text = "No Completed Items."
+            else len(self.)
+
+
+
+
+    def press_item_to_mark_completed (self):
+        for items in self.list_required:
+
 
 
     def press_additem (self, instance):
         name = instance.text
-        for items in self.list_item:
-            if items.added():
-
-            if items.name == name:
-                self.add_item_text_check = "Name: {}, Price: ${}, Priority:{}".format(items.name, items.price, items.priority)
+        for items in self.list_add_item:
+            if items.name() == name:
+                if len(self.list_add_item):
+                    if items.name() == "":
+                        self.status_text = "Please fill in the name of the item"
+                    elif items.price(name) == "":
+                        self.status_text = "Please fill in the price of the item"
+                    elif items.priority(name) == "":
+                        self.status_text = "Please fill in the priority of the item"
+                else:
+                    self.add_item_text_check.append = "Name: {}, Price: ${}, Priority:{}".format(items.name, items.price, items.priority)
 
 
 
