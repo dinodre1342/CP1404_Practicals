@@ -10,12 +10,14 @@ class Shopping_list(App):
         list_required = []
         list_completed = []
         list_add_item = []
+        mark_as_completed = []
         total_price = []
         self.list_item = list_item
         self.list_required = list_required
         self.list_completed = list_completed
-        self.list_add_item = []
-        self.total_price = []
+        self.list_add_item = list_add_item
+        self.total_price = total_price
+        self.mark_as_completed = mark_as_completed
         item_file_open = open("items.csv", "r")
         for items in item_file_open:
             list_item.append(items)
@@ -33,7 +35,41 @@ class Shopping_list(App):
         self.root.ids.list_item.clear.widgets()
 
         for items in self.list_item:
-            temp_button =
+            temp_button = Button(text=items.name)
+        if action_mode == "List Required":
+            temp_button.bind(on_release=self.press_to_show_listitem)
+        elif action_mode == "List Completed":
+            temp_button.bind(on_release=self.press_to_show_completeditems)
+        elif action_mode == "Add Item":
+            temp_button.bind(on_release=self.press_to_add_item)
+
+        if items.priority() == "1":
+            temp_button.background_color = 1, 0, 0, 1
+        elif items.priority() == "2":
+            temp_button.background_color = 0, 1, 0, 1
+        elif items.priority() == "3":
+            temp_button.background_color = 0, 0, 1, 1
+        else:
+            continue
+
+        self.root.ids.list_item.add_widget (temp_button)
+
+    def press_item_to_mark_completed (self, instance):
+
+
+    def press_additem (self, instance):
+        name = instance.text
+        for items in self.list_item:
+            if items.added():
+
+            if items.name == name:
+                self.add_item_text_check = "Name: {}, Price: ${}, Priority:{}".format(items.name, items.price, items.priority)
+
+
+
+
+
+
 
 
     def clear_input (self):
