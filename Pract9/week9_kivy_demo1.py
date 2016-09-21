@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.lang import Builder
+from kivy.config import Config
 
 class ButtonApp(App):
 

@@ -1,0 +1,74 @@
+BoxLayout:
+    orientation: 'vertical'
+
+    BoxLayout:
+        orientation: 'horizontal'
+
+
+        BoxLayout:
+            id: leftlist
+            orientation: 'vertical'
+
+            Button:
+                text: 'List Required'
+
+            Button:
+                text: 'List Completed'
+
+            Button:
+                text: 'Add New Item'
+
+            Label:
+                text: 'Name'
+                height: '20dp'
+
+            TextInput:
+                id: new_item_name
+                value: ''
+                multiline: False
+                write_tab: False
+                height: '20dp'
+
+            Label:
+                text: 'Price'
+                height: '20dp'
+
+            TextInput:
+                id: enter_item_price
+                value: ''
+                multiline: False
+                write_tab: False
+                height: '20dp'
+
+            Label:
+                text: 'Priority'
+                height: '20dp'
+
+            TextInput:
+                id: enter_priority
+                value: ''
+                multiline: False
+                write_tab: False
+                height '20dp '
+
+            Button:
+                text: 'Add item'
+                on_release: app.save_item(new_item_name.text, enter_item_price.text, enter_priority.text)
+
+            Button:
+                id: clear_input
+                text: 'Clear'
+                on_release: app.cancel_input()
+
+    GridLayout:
+        id: itemlist
+        cols: 1
+        orientation: 'vertical'
+
+
+
+
+
+
+
+
