@@ -52,6 +52,7 @@ BoxLayout:
                 height: '20dp'
 
             Button:
+                id:list_add_item
                 text: 'Add item'
                 on_release: app.save_item(new_item_name.text, enter_item_price.text, enter_priority.text)
 
@@ -62,21 +63,34 @@ BoxLayout:
 
     BoxLayout:
         orientation: 'horizontal'
-
         BoxLayout:
-            id: itemrightlist
             orientation:'vertical'
-
-            Label:
-                text: 'Total Price:'
-
-            Button:
-                text:
-
-            Button:
-                text:
-
-            Button:
+            BoxLayout:
+                orientation: 'horizontal'
+                id: action
+                Label:
+                    id:total_price
+                    size_hint_y: 0.1
+                    text: app.total_price()
+                Button:
+                    id: list_item
+                    text: 'List Items'
+                    on_release: app.list_item()
+                Button:
+                    id: list_completed
+                    text: 'List Completed Items'
+                    on_release: app.list_completed()
+                Button:
+                    id: mark_completed
+                    text: 'Select an item to mark as completed'
+            GridLayout:
+                id: item_list
+                cols: 1
+                orientation: 'horizontal'
+        Label:
+            id: status_text
+            size_hint: 0.1
+            text: app.status_text
 
 
 

@@ -7,19 +7,17 @@ class Shopping_list(App):
 
     def __init__(self):
         list_item = []
-        list_required = []
         list_completed = []
         list_add_item = []
         mark_as_completed = []
-        incomplete_item = []
         total_price = []
+        item_priority = []
+        self.item_priority = item_priority
         self.list_item = list_item
-        self.list_required = list_required
         self.list_completed = list_completed
         self.list_add_item = list_add_item
         self.total_price = total_price
         self.mark_as_completed = mark_as_completed
-        self.incomplete_item = incomplete_item
         item_file_open = open("items.csv", "r")
         for items in item_file_open:
             list_item.append(items)
@@ -51,8 +49,7 @@ class Shopping_list(App):
             temp_button.background_color = 0, 1, 0, 1
         elif items.priority() == "3":
             temp_button.background_color = 0, 0, 1, 1
-        else:
-            continue
+
 
         self.root.ids.list_item.add_widget (temp_button)
 
@@ -72,6 +69,8 @@ class Shopping_list(App):
 
     def press_additem (self, instance):
         name = instance.text
+        price = instance.text
+        priority = instance.text
         for items in self.list_add_item:
             if items.name() == name:
                 if len(self.list_add_item):
@@ -86,15 +85,16 @@ class Shopping_list(App):
 
 
 
-
-
-
-
-
-    def clear_input (self):
+     def clear_input (self):
         self.root.ids.new_item_name.text = ""
-        self.root.ids.new_item_price.text = ""
-        self.root.ids.new_item_priority.text = ""
+        self.root.ids.enter_item_price.text = ""
+        self.root.ids.enter_priority.text = ""
+
+    def start_run(self):
+        self.create_item_list(action_mode='list')
+        self.root.ids.list_item.background_color = 1, 0, 0, 1
+        self.root.ids.list_completed.background_color = 0, 1, 0, 1
+        self.root.ids.mark_completed = 0, 0, 1, 1
 
 
 
