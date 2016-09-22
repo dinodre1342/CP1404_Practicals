@@ -4,8 +4,10 @@ from kivy.uix.button import Button
 from kivy.properties import StringProperty
 
 class Shopping_list(App):
+    status_text = StringProperty()
 
     def __init__(self):
+        super(Shopping_list, self).__init__()
         list_item = []
         list_completed = []
         list_add_item = []
@@ -21,6 +23,7 @@ class Shopping_list(App):
         item_file_open = open("items.csv", "r")
         for items in item_file_open:
             list_item.append(items)
+        for items
 
     def builder(self):
         self.title = "Shopping List"
@@ -77,7 +80,6 @@ class Shopping_list(App):
                 else:
                     self.add_item_text_check.append = "Name: {}, Price: ${}, Priority:{}".format(items.name, items.price, items.priority)
 
-
     def clear_input (self):
         self.root.ids.new_item_name.text = ""
         self.root.ids.enter_item_price.text = ""
@@ -90,12 +92,13 @@ class Shopping_list(App):
         self.root.ids.list_completed.background_color = 0, 1, 0, 1
         self.root.ids.mark_completed = 0, 0, 1, 1
 
-    def list_required (self):
+    def list_item(self):
         self.create_item_list(action_mode='list')
         self.root.ids.total_price.background_color = 0, 0, 0, 0
         self.root.ids.list_item.background_color = 1, 0, 0, 1
         self.root.ids.list_completed.background_color = 0, 1, 0, 1
         self.root.ids.mark_completed = 0, 0, 1, 1
+
 
     def list_completed (self):
         self.create_item_list(action_mode= 'list')
@@ -104,6 +107,13 @@ class Shopping_list(App):
         self.root.ids.list_completed.background_color = 0, 1, 0, 1
         self.root.ids.mark_completed = 0, 0, 1, 1
         self.status_text =  "Select available items to mark as completed"
+
+    def total_price (self):
+        for items in self.total_price:
+            sum(total_pr)
+            print("The total price ")
+
+
 
     def confirm_action(self):
         for name in self.list_add_item:
