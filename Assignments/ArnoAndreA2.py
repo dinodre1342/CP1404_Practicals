@@ -53,21 +53,15 @@ class Shopping_list(App):
 
         self.root.ids.list_item.add_widget (temp_button)
 
-    def press_list_completed (self):
+    def press_to_show_completeditems (self):
         for items in self.list_completed:
-            if len(self.list_required) == 0:
+            if len(self.list_item) == 0:
                 self.status_text = "No Completed Items."
-            else len(self.)
+            else len(self.list_item) >= 0:
+                self.status_text = " You have selected completed items."
 
 
-
-
-    def press_item_to_mark_completed (self):
-        for items in self.list_required:
-
-
-
-    def press_additem (self, instance):
+    def press_to_add_item (self, instance):
         name = instance.text
         price = instance.text
         priority = instance.text
@@ -84,20 +78,49 @@ class Shopping_list(App):
                     self.add_item_text_check.append = "Name: {}, Price: ${}, Priority:{}".format(items.name, items.price, items.priority)
 
 
-
-     def clear_input (self):
+    def clear_input (self):
         self.root.ids.new_item_name.text = ""
         self.root.ids.enter_item_price.text = ""
         self.root.ids.enter_priority.text = ""
 
     def start_run(self):
         self.create_item_list(action_mode='list')
+        self.root.ids.total_price.background_color = 0, 0, 0, 0
         self.root.ids.list_item.background_color = 1, 0, 0, 1
         self.root.ids.list_completed.background_color = 0, 1, 0, 1
         self.root.ids.mark_completed = 0, 0, 1, 1
 
+    def list_required (self):
+        self.create_item_list(action_mode='list')
+        self.root.ids.total_price.background_color = 0, 0, 0, 0
+        self.root.ids.list_item.background_color = 1, 0, 0, 1
+        self.root.ids.list_completed.background_color = 0, 1, 0, 1
+        self.root.ids.mark_completed = 0, 0, 1, 1
 
+    def list_completed (self):
+        self.create_item_list(action_mode= 'list')
+        self.root.ids.total_price.background_color = 0, 0, 0, 0
+        self.root.ids.list_item.background_color = 1, 0, 0, 1
+        self.root.ids.list_completed.background_color = 0, 1, 0, 1
+        self.root.ids.mark_completed = 0, 0, 1, 1
+        self.status_text =  "Select available items to mark as completed"
 
+    def confirm_action(self):
+        for name in self.list_add_item:
+            for items in self.list_item:
+                if name == items.name:
+                    items.add()
+        for name in self.list_completed:
+            for items in self.list_item:
+                if name == items.name:
+                    items.completed()
+        self.start_run()
 
+    def finish_stop (self):
+        output_file = open("items.csv", "w")
+        for items in self.list_item:
+            print(items, file=output_file)
+        print ("{} items have been saved to items.csv".format(len(self.list_item)))
+        output_file.close()
 
 Shopping_list().run()
