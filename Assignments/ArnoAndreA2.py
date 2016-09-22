@@ -57,8 +57,8 @@ class Shopping_list(App):
         for items in self.list_completed:
             if len(self.list_item) == 0:
                 self.status_text = "No Completed Items."
-            else len(self.list_item) >= 0:
-                self.status_text = " You have selected completed items."
+            elif len(self.list_item) > 0:
+                self.status_text = " You have mark to completed items."
 
 
     def press_to_add_item (self, instance):
