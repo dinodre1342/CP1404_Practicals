@@ -64,26 +64,25 @@ BoxLayout:
     BoxLayout:
         orientation: 'vertical'
         BoxLayout:
-            orientation:'horizontal'
-            BoxLayout:
-                id: action
-                Label:
-                    id:total_price
-                    size_hint_y: 0.1
-                Button:
-                    id: list_item
-                    text: 'List Items'
-                    on_release: app.list_required()
-                Button:
-                    id: list_completed
-                    text: 'List Completed Items'
-                    on_release: app.list_completed()
-                Button:
-                    id: mark_completed
-                    text: 'Select an item to mark as completed'
+            orientation: 'horizontal'
+            id: action
+            Label:
+                id:total_price
+                size_hint_y: 0.1
+            Button:
+                id: list_item
+                text: 'List Items'
+                on_release: app.list_required()
+            Button:
+                id: list_completed
+                text: 'List Completed Items'
+                on_release: app.list_completed()
+            Button:
+                id: mark_completed
+                text: 'Select an item to mark as completed'
             GridLayout:
                 id: item_list
-                cols: 1
+                cols: 2
                 orientation: 'horizontal'
         Label:
             id: status_text

@@ -74,7 +74,7 @@ class Shopping_list(App): #Whole Class of the Shopping List
         self.create_item_list()
         self.root.ids.total_price = sum(required_item_price)
 
-    def list_completed(self): #Command button if pressed on "List Completed"
+    def list_completed(self): #Command button when pressed in 'list completed'
         self.mode = "completed"
         completed_item = []
         for items in self.list_item:
@@ -87,13 +87,13 @@ class Shopping_list(App): #Whole Class of the Shopping List
         self.create_item_list()
 
 
-    def mark_complete(self,instance):
+    def mark_complete(self,instance): #Function as to mark selected items as mark completed items
         for items in self.list_item:
             if items == instance.text:
                 items[3] = "c"
 
 
-    def show_description(self,instance):
+    def show_description(self,instance): #Function to show description if whether the item has been added completely
         for items in self.list_item:
             if items == instance.text:
                 self.status_text = "{} ${}, priority {} is completed".format(items[0], items[1], items[2])
@@ -141,12 +141,6 @@ class Shopping_list(App): #Whole Class of the Shopping List
         self.root.ids.list_completed.background_color = 0, 1, 0, 1
         self.root.ids.mark_completed = 0, 0, 1, 1
         self.status_text =  "Select available items to mark as completed"
-
-    def total_price (self): #label to show total price of the items (either list required or just added items)
-        for items in self.total_price:
-            sum()
-            print("The total price ")
-
 
     def on_stop(self): #Program ends by saving all of the items to csv
         output_file = open("items.csv", "w")
