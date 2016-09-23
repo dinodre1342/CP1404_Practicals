@@ -15,20 +15,15 @@ class Shopping_list(App): #Whole Class of the Shopping List
     def __init__(self): #Initialize for the class
         super(Shopping_list, self).__init__() #Inherit from the super class
         list_item = [] #List 'list item' that can be later used in different function
-        list_completed = [] #list 'list completed' items ~
-        list_add_item = [] #list 'list_add_item' items ~
-        mark_as_completed = [] # list that can be used later as mark_as_completed
-        total_price = [] #list that can be later used as total_price
-        item_priority = [] #list that can later use as item priority
-        self.item_priority = item_priority #Variable assignment to class
         self.list_item = list_item
-        self.list_completed = list_completed
-        self.list_add_item = list_add_item
-        self.total_price = total_price
-        self.mark_as_completed = mark_as_completed
+        mode = "required"
+        self.mode = mode
         item_file_open = open("items.csv", "r") #Opening the file for reading
         for items in item_file_open: #Iterate through items in file
-            list_item.append(items)
+            name, price, priority, status = items.strip().split(",")
+            item = "{},{:.2f},{},{}".format(name, float(price), priority, status)
+            list_item.append(item)
+
 
 
     def builder(self): #Building the GUI
@@ -38,37 +33,70 @@ class Shopping_list(App): #Whole Class of the Shopping List
         return self.root
 
     def create_item_list(self, action_mode): #To make the item list button
-        self.total_price.clear()
-        self.list_add_item.clear()
-        self.list_completed()
         self.root.ids.list_item.clear.widgets() #Clearing list of mark completed except the default list required items
+        if self.mode == "required":
+            for items in self.list_item: #Iterate items in list item
+                if items[3] == "r":
+                    temp_button = Button(text=items[0])
+                    temp_button.bind(on_release=self.mark_complete)
+                    if items[2] == "1": #Set condition of the background color based on the item priority 1, 2, 3
+                        temp_button.background_color = 1, 0, 0, 1
+                    elif items[2] == "2":
+                        temp_button.background_color = 0, 1, 0, 1
+                    elif items[2] == "3":
+                        temp_button.background_color = 0, 0, 1, 1
+        elif self.mode == "completed":
+            for items in self.list_item: #Iterate items in list item
+                if items[3] == "c":
+                    temp_button = Button(text=items[0])
+                    temp_button.bind(on_release=self.show_description)
+                    if items[2] == "1": #Set condition of the background color based on the item priority 1, 2, 3
+                        temp_button.background_color = 1, 0, 0, 1
+                    elif items[2] == "2":
+                        temp_button.background_color = 0, 1, 0, 1
+                    elif items[2] == "3":
+                        temp_button.background_color = 0, 0, 1, 1
+        self.root.ids.list_item.add_widget(temp_button)
 
-        for items in self.list_item: #Iterate items in list item
-            temp_button = Button(text=items.name)
-        if action_mode == "List Required":
-            temp_button.bind(on_release=self.press_to_show_listitem)
-        elif action_mode == "List Completed":
-            temp_button.bind(on_release=self.press_to_show_completeditems)
-        elif action_mode == "Add Item":
-            temp_button.bind(on_release=self.press_to_add_item)
 
-        if items.priority() == "1": #Set condition of the background color based on the item priority 1, 2, 3
-            temp_button.background_color = 1, 0, 0, 1
-        elif items.priority() == "2":
-            temp_button.background_color = 0, 1, 0, 1
-        elif items.priority() == "3":
-            temp_button.background_color = 0, 0, 1, 1
+    def list_required(self):
+        self.mode = "required"
+        required_item = []
+        required_item_price = []
+        for items in self.list_item:
+            if items[3]=="r":
+                required_item.append(items)
+                required_item_price.append(items[1])
+        if len(required_item)== 0:
+            self.status_text = "No required items"
+        elif len(required_item) >0:
+            self.status_text = "Press on the item to mark as complete"
+        self.create_item_list()
+        self.root.ids.total_price = sum(required_item_price)
+
+    def list_completed(self): #Command button if pressed on "List Completed"
+        self.mode = "completed"
+        completed_item = []
+        for items in self.list_item:
+            if items[3] == "r":
+                completed_item.append(items)
+        if len(self.list_item) == 0:
+            self.status_text = "No Completed Items."
+        elif len(self.list_item) > 0:
+            self.status_text = " Press on the item to show details."
+        self.create_item_list()
 
 
-        self.root.ids.list_item.add_widget (temp_button)
+    def mark_complete(self,instance):
+        for items in self.list_item:
+            if items == instance.text:
+                items[3] = "c"
 
-    def press_to_show_completeditems (self): #Command button if pressed on "List Completed"
-        for items in self.list_completed: #iterate items based on whether items have been check or not as completed items
-            if len(self.list_item) == 0:
-                self.status_text = "No Completed Items."
-            elif len(self.list_item) > 0:
-                self.status_text = " You have mark to completed items."
 
+    def show_description(self,instance):
+        for items in self.list_item:
+            if items == instance.text:
+                self.status_text = "{} ${}, priority {} is completed".format(items[0], items[1], items[2])
 
     def press_to_add_item (self, instance): #Command button if pressed on add items
         name = instance.text
@@ -116,23 +144,11 @@ class Shopping_list(App): #Whole Class of the Shopping List
 
     def total_price (self): #label to show total price of the items (either list required or just added items)
         for items in self.total_price:
-            sum(total_pr)
+            sum()
             print("The total price ")
 
 
-
-    def confirm_action(self): #Confirm adding new item
-        for name in self.list_add_item:
-            for items in self.list_item:
-                if name == items.name:
-                    items.add()
-        for name in self.list_completed:
-            for items in self.list_item:
-                if name == items.name:
-                    items.completed()
-        self.start_run()
-
-    def finish_stop (self): #Program ends by saving all of the items to csv
+    def on_stop(self): #Program ends by saving all of the items to csv
         output_file = open("items.csv", "w")
         for items in self.list_item:
             print(items, file=output_file)

@@ -62,20 +62,18 @@ BoxLayout:
                 on_release: app.clear_input()
 
     BoxLayout:
-        orientation: 'horizontal'
+        orientation: 'vertical'
         BoxLayout:
-            orientation:'vertical'
+            orientation:'horizontal'
             BoxLayout:
-                orientation: 'horizontal'
                 id: action
                 Label:
                     id:total_price
                     size_hint_y: 0.1
-                    text: app.total_price()
                 Button:
                     id: list_item
                     text: 'List Items'
-                    on_release: app.list_item()
+                    on_release: app.list_required()
                 Button:
                     id: list_completed
                     text: 'List Completed Items'
